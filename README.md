@@ -147,11 +147,15 @@ This will create the following directory structure and files:
 			layout.coffee
 		blocks.less
 	css/
+		html-scaffold.min.css
 	js/
+		html-scaffold.js
+		html-scaffold.min.js
 	templates/
 		index.data.jade
 		index.jade
 	grunt.js
+	index.html
 	package.json
 
 Then **install node modules**. If you don't have Node.js and Grunt.js installed, see the above section.
