@@ -27,10 +27,10 @@ Html-scaffold gives you chance to make your code better and obtain more pleasant
 		!!!
 		html
 			head
-				title #{title}
+				title= title
 			body
-				h1 #{title}
-				p #{description}
+				h1= title
+				p= description
 
 	resulting index.html (with whitespaces)
 
@@ -84,7 +84,7 @@ Html-scaffold gives you chance to make your code better and obtain more pleasant
 			padding: 10px @padding;
 		}
 
-4. **TODO CoffeeScript**
+4. Use **CoffeeScript** in your everyday work.
 5. **Learn Node.js** in a simple and useful for your everyday work way.
 6. Stop paying for expensive tools like Codekit (which is great, of course), understand modern opensource tools and make your work simplier for the cost of $0,00.
 
@@ -107,11 +107,10 @@ This will create the following directory structure and files:
 	blocks/
 		layout/
 			layout.less
+			layout.coffee
 		blocks.less
 	css/
-		scaffold.min.css
 	js/
-		scaffold.min.js
 	templates/
 		common.jade
 		index.data.jade
@@ -120,9 +119,7 @@ This will create the following directory structure and files:
 	index.html
 	package.json
 
-# TODO grunt.js editing
-
-Then **install node modules**. If you don't have Node.js and Grunt.js installed, see the below section.
+Then **install node modules**. If you don't have Node.js and Grunt.js installed, see the above section.
 
 	$ npm install
 
@@ -131,62 +128,96 @@ This will download needed modules create directory which is ignored in this repo
 	$ ls 
 	node_modules/
 
-**Write Jade templates and create jade data-files**
 
-Put your **images and LESS files into separate directories** inside blocks/ folder and import them inside the blocks.less:
+**Change your project name** in grunt.js.
 	
-		@import url('common.less');
+	module.exports = function(grunt) {
+		var projectName = "helloworld",
 
-		@import url('layout/layout.less');
-		@import url('head/head.less');
-		@import url('footer/footer.less');
+Project name is used in config and passed to **index.jade**, so you don't have to change filenames manually. 
+
+	- var linkCss		= "css/" + projectName + ".min.css"
+	- var linkJs		= "js/" + projectName + ".min.js"
+
+Edit your **template's data and template** itself.
+
+index.data.jade
+
+	- var title = "Perfect symmetry"
+	- var description = "This is a great album of progmetal group"
+
+index.jade
+	
+	- var linkCss		= "css/" + projectName + ".min.css"
+	- var linkJs		= "js/" + projectName + ".min.js"
+	include index.data.jade
+	!!!
+	html
+		head
+			title= title
+			link(href=linkCss, type="text/css", rel="stylesheet")
+		body.layout
+			.layout__wrapper
+				h1.layout__title= title
+				p.layout__desc= description
+
+			script(src=linkJs)
+
+Create **styles for layout block**.
+
+blocks/layout/layout.less
+
+	@width: 980px;
+
+	.layout {
+		min-width: @width;
+
+		&__wrapper {
+			width: @width;
+			margin: 0 auto;
+		}
+
+		&__title {
+			font-size: 36px;
+		}
+
+		&__desc {
+			font-size: 14px;
+		}
+	}
 
 
-	grunt.js will compile them into a single scaffold.min.css (change fielname in grunt.js config).
+Write some **CoffeeScript** for block.
 
+blocks/layout/layout.coffee
+	
+	alert "HTML scaffold is ready"
 
-**Link each peace of Javascript functionality to the block.** If you have, for example, the floating menu which takes its own folder, create the following file:
+This code is automatically wrapped with an immediate function.
 
-	blocks/
-		menu/
-			menu.coffee
+**Run grunt.**
 
-grunt.js will take all cofee files, compile them to js and them concatenate and minify all together:
+	$ grunt
 
-	$ ls js/
-	scaffold.min.js
+This will create the following files.
+	
+	$ ls
+	css/
+		html-scaffold.css
+	js/
+		html-scaffold.js
+		html-scaffold.min.js
+	index.html
 
-
-Every **block with all the files should be in its own directory**, for example:
-
-	blocks/
-		layout/
-			layout.less
-			bg.jpg
-		head/
-			head.less
-			head.png
-			menuitem.png
-		footer/
-			footer.less
-			slider.js
-			gradient.coffee
-
-		blocks.less
-
-They are **connected together in blocks.less** file
-
-	@import url('layout/layout.less');
-	@import url('head/head.less')
-	@import url('footer/footer.less')
-
-and then compiled to a single minified css
-
-	$ ls css/
-	scaffold.min.css
+Then **open index.html** in browser. It's easy and fun!
 
 ## TODO
 There're many features those can be very useful but not implemented yet.
-* SCSS instead of LESS.
+* Filesystem abstraction: simple commands to manipulate blocks
 * Automatic image movement from blocks/ to img/ directory.
 * Development / production versions each in its own directory.
+* SCSS instead of LESS.
+* Add coffeescript example to the Why to use section.
+* https://npmjs.org/package/grunt-shell for creating blocks with a command
+* https://npmjs.org/package/grunt-string-replace or https://npmjs.org/package/grunt-text-replace for replacing paths to files
+* grunt production task which creates a folder and moves there all necessary files
