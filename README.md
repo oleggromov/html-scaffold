@@ -139,7 +139,7 @@ Cd to your new project folder and **clone the repo**:
 		
 	$ git clone git@github.com:oleggromov/html-scaffold.git .
 
-This will create the following directory structure and files:
+This will create the following directory structure and files. Contents of css/ and js/ directories and index.html will be overwritten each time you exec grunt.
 	
 	blocks/
 		layout/
@@ -164,19 +164,19 @@ Then **install node modules**. If you don't have Node.js and Grunt.js installed,
 
 This will download needed modules and create node_modules/ which is ignored in this repo.
 
-	$ ls 
-	node_modules/
+	$ ls node-modules/
+	grunt-contrib-coffee  grunt-contrib-jade  grunt-contrib-less
 
 
 **Change your project name** in grunt.js.
 	
 	module.exports = function(grunt) {
-		var projectName = "helloworld",
+		var projectName = "html-scaffold",
 
 Project name is used in config and passed to **index.jade**, so you don't have to change filenames manually. 
 
-	- var linkCss		= "css/#{projectName}.min.css"
-	- var linkJs		= "js/#{projectName}.min.js"
+	- var stylesheet	= "css/" + projectName + ".min.css"
+	- var script		= "js/" + projectName + ".min.js"
 
 Edit your **template's data and template** itself.
 
@@ -187,41 +187,39 @@ index.data.jade
 
 index.jade
 	
-	- var linkCss		= "css/" + projectName + ".min.css"
-	- var linkJs		= "js/" + projectName + ".min.js"
+	- var stylesheet	= "css/" + projectName + ".min.css"
+	- var script		= "js/" + projectName + ".min.js"
 	include index.data.jade
+
 	!!!
 	html
 		head
+			link(href=stylesheet, type="text/css", rel="stylesheet")
 			title= title
-			link(href=linkCss, type="text/css", rel="stylesheet")
 		body.layout
-			.layout__wrapper
-				h1.layout__title= title
-				p.layout__desc= description
+			h1.layout__caption= title
+			p.layout__text !{description}
 
-			script(src=linkJs)
+			script(src=script)
 
-Create **styles for layout block**.
+Edit **styles for layout block**.
 
 blocks/layout/layout.less
 
-	@width: 980px;
+	@widthLayout: 600px;
+	@sizeCaption: 48px;
+	@sizeText: 14px;
 
 	.layout {
-		min-width: @width;
+		width: @widthLayout;
+		margin: 0 auto;
 
-		&__wrapper {
-			width: @width;
-			margin: 0 auto;
+		&__caption {
+			font-size: @sizeCaption;
 		}
 
-		&__title {
-			font-size: 36px;
-		}
-
-		&__desc {
-			font-size: 14px;
+		&__text {
+			font-size: @sizeText;
 		}
 	}
 
@@ -230,7 +228,7 @@ Write some **CoffeeScript** for block.
 
 blocks/layout/layout.coffee
 	
-	alert "HTML scaffold is ready"
+	document.write "<b>This is my first html-scaffold project</b>"
 
 This code is automatically wrapped with an immediate function.
 
@@ -238,27 +236,28 @@ This code is automatically wrapped with an immediate function.
 
 	$ grunt
 
-This will create the following files.
+This will create and overwrite the following files.
 	
-	$ ls
-	css/
-		html-scaffold.css
-	js/
-		html-scaffold.js
-		html-scaffold.min.js
+	$ ls css/ js/ index.html
 	index.html
+
+	css/:
+	html-scaffold.min.css
+
+	js/:
+	html-scaffold.js  html-scaffold.min.js
 
 Then **open index.html** in browser. It's easy and fun!
 
 ## TODO
 There're many features those can be very useful but not implemented yet.
-* Filesystem abstraction: simple commands to manipulate blocks
-* Automatic image movement from blocks/ to img/ directory.
+
+* Filesystem abstraction: simple grunt commands with [grunt-shell](https://npmjs.org/package/grunt-shell) to manipulate blocks.
+* Automatic image movement from blocks/ to img/ directory using [grunt-string-replace](https://npmjs.org/package/grunt-string-replace) or [grunt-text-replace](https://npmjs.org/package/grunt-text-replace).
+* Image optimizations with pngcrush or any other plugin.
 * Development / production versions each in its own directory.
 * SCSS instead of LESS.
 * Add coffeescript example to the Why to use section.
-* https://npmjs.org/package/grunt-shell for creating blocks with a command
-* https://npmjs.org/package/grunt-string-replace or https://npmjs.org/package/grunt-text-replace for replacing paths to files
-* grunt production task which creates a folder and moves there all necessary files
-* grunt watch task
-* correct dependencies' versions in package.json
+* Add grunt production task which creates a folder and moves there all necessary files
+* Add grunt watch task
+* Correct dependencies' versions in package.json.
