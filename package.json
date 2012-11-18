@@ -1,0 +1,18 @@
+{
+	"name": "html-scaffold",
+	"version": "0.1.0-20121118",
+	"description": "Project template for an HTML-coder.",
+	"author": "Oleg Gromov <mail@oleggromov.com>",
+	"homepage": "http://oleggromov.com/html-scaffold",
+
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/oleggromov/html-scaffold"
+	},
+
+	"dependencies": {
+		"grunt-contrib-jade": "0.3.1",
+		"grunt-contrib-less": "0.3.2",
+		"grunt-contrib-coffee": "0.3.2"
+	}
+}

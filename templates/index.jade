@@ -1,0 +1,14 @@
+- var stylesheet	= "css/" + projectName + ".min.css"
+- var script		= "js/" + projectName + ".min.js"
+include index.data.jade
+
+!!!
+html
+	head
+		link(href=stylesheet, type="text/css", rel="stylesheet")
+		title= title
+	body.layout
+		h1.layout__caption= title
+		p.layout__text !{description}
+
+		script(src=script)

@@ -1,51 +1,88 @@
 # html-scaffold
 Project template for an HTML-coder.
 
-Html-scaffold takes your **Jade**, **CoffeeScript** and **LESS** files, compiles, minifies and concatenates them together to the production version.
+Html-scaffold allows you to use **Jade templates** (with inheritance, data and view separation etc.) while writing clientside code, split your site into **independent blocks** each with its own **LESS stylesheets** (with variables, mixins and functions) and **scripts in CoffeeScript**, put into **separate folders** on the filesystem. Then it takes all project files, compiles, minifies and concatenates them together to the production version. 
 
 This is all about using [**BEM methodology**](http://bem.info/method/)—a powerful approach for writing client-side code. The BEM itself gives good, but complicated tools. They're needed when continously developing big projects by big teams, but not for freelance coders or html-guys who make simple web sites every day basically alone.
 
 Html-scaffold gives you chance to make your code better and obtain more pleasant workflow. 
 
-## Why should I use it
+## Why should HTML-coder use this
 
-1. **Organize your code** and make projects scalable using Blocks, Elements and their Modifiers.
-2. Don't think about compiling all this stuff into plain HTML, CSS and Javascript.
+1. **Organize your code** and make projects scalable using independent blocks in separate folders on the filesystem.
+
+		$ ls blocks/
+		footer/
+		head/
+		layout/
+		link/
+		blocks.less
+
+2. **Compile all stuff automatically** into plain HTML, CSS and Javascript.
 	
 		$ grunt
+		Running "jade:production" (jade) task
+		File index.html created.
 
-3. **Detach content from HTML** by using Jade includes.
+		Running "less:production" (less) task
+		File css/html-scaffold.min.css created.
+
+		Running "coffee:compile" (coffee) task
+		File js/html-scaffold.js created.
+
+		Running "min:simple" (min) task
+		File "js/html-scaffold.min.js" created.
+		Uncompressed size: 78 bytes.
+		Compressed size: 89 bytes gzipped (69 bytes minified).
+
+		Done, without errors.
+
+3. **Detach content from HTML** using Jade includes.
 	
 	index.data.jade
 
-		- var title = "html-scaffold"
-		- var description = "An easy way to better code"
+		- var title 		= "html-scaffold"
+		- var description	= "Project template for an HTML-coder."
 
 	index.jade
 
+		- var stylesheet	= "css/" + projectName + ".min.css"
+		- var script		= "js/" + projectName + ".min.js"
 		include index.data.jade
+
 		!!!
 		html
 			head
+				link(href=stylesheet, type="text/css", rel="stylesheet")
 				title= title
-			body
-				h1= title
-				p= description
+			body.layout
+				h1.layout__caption= title
+				p.layout__text !{description}
+
+				script(src=script)
 
 	resulting index.html (with whitespaces)
 
 		<!DOCTYPE html>
 		<html>
 			<head>
+				<link href="css/html-scaffold.min.css" type="text/css" rel="stylesheet">
 				<title>html-scaffold</title>
 			</head>
-			<body>
-				<h1>html-scaffold</h1>
-				<p>An easy way to better code</p>
+			<body class="layout">
+				<h1 class="layout__caption">
+					html-scaffold
+				</h1>
+
+				<p class="layout__text">
+					Project template for an HTML-coder.
+				</p>
+
+				<script src="js/html-scaffold.min.js"></script>
 			</body>
 		</html>
 
-3. **Stop annoying by hand HTML writing** and get rid of typos: make an array and iterate through it.
+4. **Stop annoying by hand HTML writing** and get rid of typos: make an array and iterate through it.
 
 	index.html (before)
 
@@ -62,10 +99,10 @@ Html-scaffold gives you chance to make your code better and obtain more pleasant
 		- var texts = ["First", "Second", "Third", "Fourth"]
 		ul
 			for link, i in links
-				li: a(href=link) #{texts[i]}
+				li: a(href=link)= texts[i]
 
 
-3. **Use variables, mixins, functions etc in LESS**, which is very close to CSS.
+4. **Use variables, mixins, functions etc. in LESS**, which is very close to CSS.
 
 	styles.css
 
@@ -84,15 +121,15 @@ Html-scaffold gives you chance to make your code better and obtain more pleasant
 			padding: 10px @padding;
 		}
 
-4. Use **CoffeeScript** in your everyday work.
-5. **Learn Node.js** in a simple and useful for your everyday work way.
-6. Stop paying for expensive tools like Codekit (which is great, of course), understand modern opensource tools and make your work simplier for the cost of $0,00.
+5. Use and learn **CoffeeScript** in your everyday work.
+6. **Learn Node.js** in a simple and useful for your everyday work way.
+7. Get **advanced experience of paid tools for free.** CodeKit and so on are great, but you can get the same things for free.
 
 
 ## Requirments
 * **Node.js** can be [easily installed](http://nodejs.org/download/) on most OSes. Once you're ready, install grunt.
 * **Grunt.js** is better when installed globally, so you can use it in every project located anywhere on your filesystem:
-
+	
 		$ npm install -g grunt
 
 
@@ -112,18 +149,16 @@ This will create the following directory structure and files:
 	css/
 	js/
 	templates/
-		common.jade
 		index.data.jade
 		index.jade
 	grunt.js
-	index.html
 	package.json
 
 Then **install node modules**. If you don't have Node.js and Grunt.js installed, see the above section.
 
 	$ npm install
 
-This will download needed modules create directory which is ignored in this repo.
+This will download needed modules and create node_modules/ which is ignored in this repo.
 
 	$ ls 
 	node_modules/
@@ -136,8 +171,8 @@ This will download needed modules create directory which is ignored in this repo
 
 Project name is used in config and passed to **index.jade**, so you don't have to change filenames manually. 
 
-	- var linkCss		= "css/" + projectName + ".min.css"
-	- var linkJs		= "js/" + projectName + ".min.js"
+	- var linkCss		= "css/#{projectName}.min.css"
+	- var linkJs		= "js/#{projectName}.min.js"
 
 Edit your **template's data and template** itself.
 
@@ -221,3 +256,5 @@ There're many features those can be very useful but not implemented yet.
 * https://npmjs.org/package/grunt-shell for creating blocks with a command
 * https://npmjs.org/package/grunt-string-replace or https://npmjs.org/package/grunt-text-replace for replacing paths to files
 * grunt production task which creates a folder and moves there all necessary files
+* grunt watch task
+* correct dependencies' versions in package.json
