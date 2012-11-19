@@ -263,3 +263,6 @@ There're many features those can be very useful but not implemented yet.
 * Add grunt production task which creates a folder and moves there all necessary files
 * Add grunt watch task
 * Correct dependencies' versions in package.json.
+
+* Case: include into existing project on Yii, for example
+* How does this stuff work.
