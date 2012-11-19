@@ -137,7 +137,7 @@ Html-scaffold gives you chance to make your code better and obtain more pleasant
 
 Cd to your new project folder and **clone the repo**:
 		
-	$ git clone git@github.com:oleggromov/html-scaffold.git .
+	$ git clone git://github.com/oleggromov/html-scaffold.git .
 
 This will create the following directory structure and files. Contents of css/ and js/ directories and index.html will be overwritten each time you exec grunt.
 	
