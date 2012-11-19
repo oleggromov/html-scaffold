@@ -266,3 +266,5 @@ There're many features those can be very useful but not implemented yet.
 
 * Case: include into existing project on Yii, for example
 * How does this stuff work.
+
+* JSON as input data for Jade templates
