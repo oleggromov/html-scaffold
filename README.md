@@ -268,3 +268,5 @@ There're many features those can be very useful but not implemented yet.
 * How does this stuff work.
 
 * JSON as input data for Jade templates
+
+* Concatenating also plain js-files
