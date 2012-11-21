@@ -131,6 +131,12 @@ This will create and overwrite the following files.
 
 Then **open index.html** in browser. It's easy and fun!
 
+### Compilation on change
+You can also run 
+	
+	$ grunt watch
+
+so grunt will watch and compile your *.jade, *.less and *.coffee files located anywhere in your project tree. 
 
 ## Why should HTML-coder use this
 
@@ -261,7 +267,6 @@ There're many features those can be very useful but not implemented yet.
 * SCSS instead of LESS.
 * Add coffeescript example to the Why to use section.
 * Add grunt production task which creates a folder and moves there all necessary files
-* Add grunt watch task
 * Correct dependencies' versions in package.json.
 
 * Case: include into existing project on Yii, for example

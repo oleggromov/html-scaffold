@@ -48,6 +48,21 @@ module.exports = function(grunt) {
 				dest: 'js/' + projectName + '.min.js',
 				separator: ';'
 			}
+		},
+		// Watches on your files' changes
+		watch: {
+			jade: {
+				files: '**/*.jade',
+				tasks: 'jade'
+			},
+			less: {
+				files: '**/*.less',
+				tasks: 'less'
+			},
+			coffee: {
+				files: '**/*.coffee',
+				tasks: 'coffee min'
+			}
 		}
 	});
 
