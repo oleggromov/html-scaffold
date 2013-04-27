@@ -6,12 +6,12 @@ module.exports = function(grunt) {
 
 	// Put here all your templates and filenames they needed to be compilated to.
 	pathJade = {
-		"index.html": "templates/index.jade",
+		"index.html": "tpl/index.jade",
 	};
 	// LESS compiles all blocks to a single css/{projectName}.min.css file.
-	pathCSS['css/' + projectName + '.min.css'] = 'blocks/blocks.less';
+	pathCSS['css/' + projectName + '.min.css'] = 'b/blocks.less';
 	// CoffeeScript creates single js/{projectName}.min.js script.
- 	pathJS['js/' + projectName + '.js'] = 'blocks/*/*.coffee';
+ 	pathJS['js/' + projectName + '.js'] = 'b/*/*.coffee';
 
 	grunt.initConfig({
 		// Compile jade templates to plain htmls.
@@ -19,6 +19,7 @@ module.exports = function(grunt) {
 			production: {
 				files: pathJade,
 				options: {
+					pretty: true,
 					data: {
 						// Project name is passed to templates too to know actual CSS and JS filesnames.
 						projectName: projectName
