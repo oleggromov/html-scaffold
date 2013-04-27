@@ -30,10 +30,9 @@ module.exports = (grunt) ->
 		uglify:
 			javascript:
 				files: jsMinified
-					
 		watch:
 			jade:
-				files: '**/*.jade'
+				files: ['tpl/**/*.jade', 'data/**/*.jade', 'b/**/*.jade']
 				tasks: 'jade'
 			stylus:
 				files: 'b/**/*.stylus'
@@ -46,5 +45,6 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks 'grunt-contrib-stylus'
 	grunt.loadNpmTasks 'grunt-contrib-coffee'
 	grunt.loadNpmTasks 'grunt-contrib-uglify'
+	grunt.loadNpmTasks 'grunt-contrib-watch'
 
 	grunt.registerTask 'default', ['jade', 'stylus', 'coffee', 'uglify']
