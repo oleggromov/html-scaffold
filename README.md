@@ -260,18 +260,18 @@ so grunt will watch and compile your *.jade, *.less and *.coffee files located a
 ## TODO
 There're many features those can be very useful but not implemented yet.
 
-* Filesystem abstraction: simple grunt commands with [grunt-shell](https://npmjs.org/package/grunt-shell) to manipulate blocks.
-* Automatic image movement from blocks/ to img/ directory using [grunt-string-replace](https://npmjs.org/package/grunt-string-replace) or [grunt-text-replace](https://npmjs.org/package/grunt-text-replace).
-* Image optimizations with pngcrush or any other plugin.
-* Development / production versions each in its own directory.
-* SCSS instead of LESS.
-* Add coffeescript example to the Why to use section.
-* Add grunt production task which creates a folder and moves there all necessary files
-* Correct dependencies' versions in package.json.
-
-* Case: include into existing project on Yii, for example
-* How does this stuff work.
+* **Update docs to new Grunt, Stylus etc.**
 
 * JSON as input data for Jade templates
+* Production version: unnecessary files removement, branches, images etc.
+* Block manipulation commands. Filesystem abstraction: simple grunt commands with [grunt-shell](https://npmjs.org/package/grunt-shell) to manipulate blocks.
+* Jade/BEM (kizu)
 
-* Concatenating also plain js-files
+* Image optimizations with pngcrush or any other plugin.
+* Automatic image movement from blocks/ to img/ directory using [grunt-string-replace](https://npmjs.org/package/grunt-string-replace) or [grunt-text-replace](https://npmjs.org/package/grunt-text-replace).
+
+* Add coffeescript example to the Why to use section.
+* How does this stuff work.
+
+* Case: include into existing project on Yii, for example
+	How to use with backend?
