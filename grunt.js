@@ -9,7 +9,8 @@ module.exports = function(grunt) {
 		"index.html": "tpl/index.jade",
 	};
 	// LESS compiles all blocks to a single css/{projectName}.min.css file.
-	pathCSS['css/' + projectName + '.min.css'] = 'b/blocks.less';
+	// pathCSS['css/' + projectName + '.min.css'] = 'b/blocks.less';
+	pathCSS['css/' + projectName + '.min.css'] = 'b/blocks.styl';
 	// CoffeeScript creates single js/{projectName}.min.js script.
  	pathJS['js/' + projectName + '.js'] = 'b/*/*.coffee';
 
@@ -28,12 +29,17 @@ module.exports = function(grunt) {
 			}
 		},
 		// Make CSS of LESS.
-		less: {
-			production: {
-				files: pathCSS,
-				options: {
-					yuicompress: true
-				}
+		// less: {
+		// 	production: {
+		// 		files: pathCSS,
+		// 		options: {
+		// 			yuicompress: true
+		// 		}
+		// 	}
+		// },
+		stylus: {
+			compile: {
+				files: pathCSS
 			}
 		},
 		// Compile CoffeeScript to JavaScript.
@@ -56,9 +62,13 @@ module.exports = function(grunt) {
 				files: '**/*.jade',
 				tasks: 'jade'
 			},
-			less: {
-				files: '**/*.less',
-				tasks: 'less'
+			// less: {
+			// 	files: '**/*.less',
+			// 	tasks: 'less'
+			// },
+			stylus: {
+				files: '**/*.styl',
+				tasks: 'stylus'
 			},
 			coffee: {
 				files: '**/*.coffee',
@@ -68,7 +78,8 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jade');
-	grunt.loadNpmTasks('grunt-contrib-less');
+	// grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-stylus');
 	grunt.loadNpmTasks('grunt-contrib-coffee');
-	grunt.registerTask('default', 'jade less coffee min');
+	grunt.registerTask('default', 'jade stylus coffee min');
 };
