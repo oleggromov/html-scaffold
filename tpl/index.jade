@@ -4,9 +4,18 @@ include ../data/index
 include ../b/layout/layout
 
 !!!
-html
+//if lt IE 7
+	html.no-js.lt-ie9.lt-ie8.lt-ie7
+//if IE 7
+	html.no-js.lt-ie9.lt-ie8
+//if IE 8
+	html.no-js.lt-ie9
+//[if gt IE 8]><!
+html.no-js
+	//<![endif]
 	head
 		link(href=stylesheet, type="text/css", rel="stylesheet")
+		script(src='js/vendor/modernizr-2.6.2.js')
 		title= title
 	body.layout
 		+layout(title, description)

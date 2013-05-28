@@ -51,7 +51,7 @@ Then **install node modules**. If you don't have Node.js and Grunt.js installed,
 This will download needed modules and create node_modules/ which is ignored in this repo.
 
 	$ ls node-modules/
-	grunt  grunt-contrib-coffee  grunt-contrib-jade  grunt-contrib-less  grunt-contrib-stylus  grunt-contrib-uglify
+	grunt  grunt-contrib-coffee  grunt-contrib-jade  grunt-contrib-less  grunt-contrib-stylus  grunt-contrib-uglify grunt-contrib-connect
 
 
 **Change your project name** in Gruntfile.coffee.
@@ -83,9 +83,19 @@ tpl/index.jade
 	include ../b/layout/layout
 
 	!!!
-	html
+	//if lt IE 7
+		html.no-js.lt-ie9.lt-ie8.lt-ie7
+	//if IE 7
+		html.no-js.lt-ie9.lt-ie8
+	//if IE 8
+		html.no-js.lt-ie9
+	//[if gt IE 8]><!
+	html.no-js
+		//<![endif]
 		head
+			link(href="css/reset.css", type="text/css", rel="stylesheet")
 			link(href=stylesheet, type="text/css", rel="stylesheet")
+			script(src="js/vendor/modernizr-2.6.2.js")
 			title= title
 		body.layout
 			+layout(title, description)
@@ -94,6 +104,7 @@ tpl/index.jade
 
 You can see the definition of layout's mixin in the included /b/layout/layout.jade. Each block has its own templates with mixins, so we can share blocks with different projects easily.
 
+Reset.css from YUI and Modernizr have been already plugged in. Also there are conditional comments from Paul Irish.
 
 Edit **styles for layout block**.
 
@@ -147,6 +158,14 @@ You can also run
 	$ grunt watch
 
 so grunt will watch and compile your *.jade, *.styl and *.coffee files located anywhere in your project tree. 
+
+### Simple Node.js server for project
+You can run
+
+	$ grunt connect watch
+
+so grunt will not only watch and compile necessary files but also start server on localhost:8000.
+You can make an ajax request no allowed if you would open index.html in browser just from filesystem.
 
 ## Why should HTML-coder use this
 
