@@ -1,5 +1,5 @@
 module.exports = (grunt) ->
-	name = 'html-scaffold'
+	name = 'scaffold'
 	stylus = {}
 	javascript = {}
 	jsMinified = {}
