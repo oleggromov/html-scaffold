@@ -1,5 +1,5 @@
 module.exports = (grunt) ->
-	name = 'scaffold'
+	name = 'html-scaffold'
 	stylus = {}
 	javascript = {}
 	jsMinified = {}
@@ -30,21 +30,28 @@ module.exports = (grunt) ->
 		uglify:
 			javascript:
 				files: jsMinified
+		connect:
+			test:
+				options:
+					port: 8000
+					base: '.'			
 		watch:
 			jade:
 				files: ['tpl/**/*.jade', 'data/**/*.jade', 'b/**/*.jade']
 				tasks: 'jade'
 			stylus:
-				files: 'b/**/*.stylus'
+				files: 'b/**/*.styl'
 				tasks: 'stylus'
 			coffee:
 				files: 'b/**/*.coffee'
 				tasks: 'coffee uglify'
+
 
 	grunt.loadNpmTasks 'grunt-contrib-jade'
 	grunt.loadNpmTasks 'grunt-contrib-stylus'
 	grunt.loadNpmTasks 'grunt-contrib-coffee'
 	grunt.loadNpmTasks 'grunt-contrib-uglify'
 	grunt.loadNpmTasks 'grunt-contrib-watch'
+	grunt.loadNpmTasks 'grunt-contrib-connect'
 
 	grunt.registerTask 'default', ['jade', 'stylus', 'coffee', 'uglify']
