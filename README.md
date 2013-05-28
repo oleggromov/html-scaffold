@@ -36,6 +36,9 @@ This will create the following directory structure and files. Contents of css/ a
 	data/
 		index.jade
 	js/
+		vendor/
+			jquery-1.9.1.min.js
+			modernizr-2.6.2.min.js
 		scaffold.js
 		scaffold.min.js
 	tpl/
@@ -94,18 +97,20 @@ tpl/index.jade
 	html.no-js
 		//<![endif]
 		head
-			link(href="css/reset.css", type="text/css", rel="stylesheet")
 			link(href=stylesheet, type="text/css", rel="stylesheet")
-			script(src="js/vendor/modernizr-2.6.2.js")
+			script(src='js/vendor/modernizr-2.6.2.min.js')
 			title= title
 		body.layout
 			+layout(title, description)
 
+			script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+			script
+				window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\\/script>')
 			script(src=script)
 
 You can see the definition of layout's mixin in the included /b/layout/layout.jade. Each block has its own templates with mixins, so we can share blocks with different projects easily.
 
-Reset.css from YUI and Modernizr have been already plugged in. Also there are [conditional comments from Paul Irish](http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/).
+Reset.css from YUI, Modernizr v2.6.2 and jQuery v1.9.1 have been already plugged in. Also there are [conditional comments from Paul Irish](http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/).
 
 Edit **styles for layout block**.
 
@@ -243,12 +248,14 @@ You can make an ajax request no allowed if you would open index.html in browser 
 		  <!--<![endif]-->
 		  <head>
 		    <link href="css/scaffold.min.css" type="text/css" rel="stylesheet">
-		    <script src="js/vendor/modernizr-2.6.2.js"></script>
+		    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 		    <title>html-scaffold</title>
 		  </head>
 		  <body class="layout">
 		    <h1 class="layout__caption">html-scaffold</h1>
 		    <p class="layout__text">Project template for an HTML-coder.</p>
+		    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\\/script>')</script>
 		    <script src="js/scaffold.min.js"></script>
 		  </body>
 		</html>
