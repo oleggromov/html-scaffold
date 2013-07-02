@@ -51,7 +51,8 @@ Then **install node modules**. If you don't have Node.js and Grunt.js installed,
 This will download needed modules and create node_modules/ which is ignored in this repo.
 
 	$ ls node-modules/
-	grunt  grunt-contrib-coffee  grunt-contrib-jade  grunt-contrib-less  grunt-contrib-stylus  grunt-contrib-uglify
+	grunt  grunt-contrib-coffee  grunt-contrib-jade  grunt-contrib-less
+	grunt-contrib-stylus  grunt-contrib-uglify  grunt-contrib-connect
 
 
 **Change your project name** in Gruntfile.coffee.
@@ -146,7 +147,21 @@ You can also run
 	
 	$ grunt watch
 
-so grunt will watch and compile your *.jade, *.styl and *.coffee files located anywhere in your project tree. 
+so grunt will watch and compile your *.jade, *.styl and *.coffee files located anywhere in your project tree.
+
+### Simple Node.js server for project
+You can run
+
+	$ grunt connect watch
+
+so grunt will not only watch and compile necessary files but also start server on localhost:8000.
+You can make an ajax request no allowed if you would open index.html in browser just from filesystem.
+
+### Some commands
+Update npm
+	$ npm update npm -g
+Clean npm cache
+	$ npm cache clean
 
 ## Why should HTML-coder use this
 
