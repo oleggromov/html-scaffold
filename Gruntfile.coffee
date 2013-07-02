@@ -30,11 +30,11 @@ module.exports = (grunt) ->
 		uglify:
 			javascript:
 				files: jsMinified
-        	connect:
-          		test:
-             			options:
-               				port: 8000
-		                	base: '.'
+		connect:
+			test:
+				options:
+					port: 8000
+					base: '.'
 		watch:
 			jade:
 				files: ['tpl/**/*.jade', 'data/**/*.jade', 'b/**/*.jade']
