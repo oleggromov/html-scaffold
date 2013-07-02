@@ -1,0 +1,92 @@
+.news
+	box-reset()
+
+	margin 20px 0
+	list-style none
+
+	&__item
+		position relative
+
+		&:after
+			position absolute
+			left 0
+			bottom 0
+			z-index 50
+			width 100%
+			height 10px
+			background url("../img/text-block-shadow.png") center top no-repeat
+			content ""
+
+		&_picture_right
+
+			.news__inner
+				padding-left 0
+				padding-right 4*column
+
+			.news__text
+				padding-left 0
+				padding-right 2*columnGap
+
+			.news__photos
+				float right
+				margin-left 0
+				margin-right -4*column - columnGap
+
+		&_has_gallery
+
+			&:after
+				bottom 40px
+
+	&__inner
+		padding 20px 0 0 5*column
+
+	&__text
+		padding-left 2*columnGap			
+
+	&__photos
+		float left
+		width 5*column
+		margin-left -5*column - columnGap
+
+		text-align center
+
+	&__photo
+		vertical-align top
+		height 315px	
+
+	&__gallery
+		height 355px
+		overflow hidden	
+
+	.slidesjs-pagination
+		height 40px	
+		text-align center	
+
+	.slidesjs-pagination-item
+		display inline-block
+		width 40px
+		height 40px
+
+		position relative
+
+		span
+			position absolute
+			left 50%
+			top 50%
+			width 22px
+			height 17px
+			margin-left - @width * 0.5
+			margin-top - @width * 0.5
+
+			border-bottom 0
+
+			background url("../img/common-sprite.png") 0 -336px no-repeat
+
+	.slidesjs-pagination-item_active
+		span
+			background-position -22px -336px
+
+.lt-ie8
+	.news .slidesjs-pagination-item
+		display inline
+		zoom 1			

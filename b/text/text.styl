@@ -1,0 +1,148 @@
+p
+	box-reset()
+
+.textSection
+	margin 40px 0
+	
+	&:after
+		content ""
+		display block
+		position relative
+		height 10px
+		background url("../img/text-block-shadow.png") center bottom no-repeat
+		margin-top - @height
+
+	&:first-child
+		margin-top 0
+
+.text
+	color colorText
+
+	&__pictureWrapper
+		text-align center
+
+		img
+			vertical-align top
+
+	ul
+		list-style: circle outside
+		box-reset()
+		margin: 1.5*sizeText 0
+	
+	ol
+		list-style decimal
+		box-reset()
+		margin: 1.5*sizeText 0
+
+
+	li
+		margin sizeText 0
+
+		ol,
+		ul
+			margin sizeText 0
+			margin-left sizeText + 2
+
+	a
+		color: rgb(3,102,213)
+		border-bottom: 1px solid rgba(3,102,213,0.7)
+
+		&:hover
+			border-bottom 0
+
+	p
+		margin sizeText 0
+
+	h1,h2,h3
+		color #56657d
+
+	h1:first-child
+		margin-top 0
+
+	&__picture
+		margin 0 20px 20px 0
+		float left
+
+		p
+			color #4e4e4e
+			text-align right
+			margin-top 0
+			font-style italic
+
+	blockquote
+		margin 1.5em 0
+		padding-left 1em
+		color #56657d
+		border-left 4px solid #d3d8e3
+
+	&__note
+		background #f8f8f8
+		padding 2*columnGap
+		margin 1.5em 0
+		margin-left -2*columnGap
+		
+		h3
+			margin-top 0
+	
+	code
+		display block
+		padding 2*columnGap
+		margin 1.5em 0
+		margin-left -2*columnGap
+
+		white-space pre
+		font-family monospace
+		background #fdfaef
+		border 1px solid #eee7cb
+		border-left 0
+		border-right 0
+
+	&__noteInner
+
+		padding-left column
+
+		&:before
+			float left
+			margin-left - column
+			width 58px
+			height 58px
+			background url("../img/common-sprite.png") -44px -336px no-repeat
+
+			content ""
+	
+	table
+		width 100%
+		border-collapse collapse
+
+	td,
+	th
+		padding 10px
+		text-align left
+		vertical-align top
+
+	th
+		border-bottom 1px solid #ccc	
+
+	.ico-plus,
+	.ico-minus
+		display inline-block
+		width 19px
+		height 19px
+		background url("../img/common-sprite.png") 0 -174px no-repeat
+
+		text-indent -9999px
+
+	.ico-minus
+		background-position: 0 -193px	
+
+	&__picture + p
+		& + div,
+		& + p,
+		& + code,
+		& + blockquote
+			clear left	
+
+.no-rgba
+	.text
+		a
+			border-bottom: 1px solid rgb(3,102,213)		

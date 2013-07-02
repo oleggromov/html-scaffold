@@ -1,14 +1,62 @@
-- var stylesheet	= "css/" + projectName + ".min.css"
-- var script		= "js/" + projectName + ".min.js"
-include ../data/index
-include ../b/layout/layout
+extends layout
 
-!!!
-html
-	head
-		link(href=stylesheet, type="text/css", rel="stylesheet")
-		title= title
-	body.layout
-		+layout(title, description)
+block content
 
-		script(src=script)
+	.gallery
+		.gallery__inner(style="background-image: url('#{data.gallery.background}')")
+			.gallery__slidesjs(data-pagination-captions="#{data.gallery.pagination}")
+				each item in data.gallery.items
+					.gallery__item
+						.layout__wrapper.gallery__itemInner
+							h2.gallery__caption= item.caption
+							.gallery__description= item.description
+							.gallery__featureWrapper.i-clear
+								.gallery__preview
+									img(src=item.preview.src, width=item.preview.width, height=item.preview.height)
+								.gallery__featureDescription
+									h3= item.featureCaption
+									p= item.feature
+	//\/\/gallery
+	
+	fourDaysSection = data.sections[0]
+	.layout__section
+		.layout__wrapper
+			.layout__caption= fourDaysSection.caption
+			ul.features.features_start
+				each item in fourDaysSection.features
+					li.features__item
+						h2.features__caption= item.caption
+						.text
+							p= item.text
+							p.features__day= "1 день"
+	//\/\/4 days section
+	
+	benefits = data.sections[1]
+	.layout__section.layout__section_blue
+		.layout__wrapper
+			.layout__caption.layout__caption_white= benefits.caption
+			ul.features.features_benefits
+				each item in benefits.benefits
+					li.features__item
+						a.features__caption.link.link_white(href="")
+							.features__preview
+								img(src=item.preview.src, width=item.preview.width, height=item.preview.height)
+							span.link__underline= item.caption
+						.text
+							!{item.text}		
+	//\/\/benefits
+
+	features = data.sections[2]
+	.layout__section
+		.layout__wrapper
+			.layout__caption= features.caption
+			ul.functions
+				each item in features.features
+					li.functions__item
+						a.functions__caption.link(href="#")
+							img(src=item.preview.src, width=item.preview.width, height=item.preview.height).functions__preview
+							span.link__underline= item.caption
+						.text
+							ul
+								each i in item.list
+									li= i

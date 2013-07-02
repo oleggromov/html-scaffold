@@ -1,13 +1,151 @@
-widthLayout 	= 980px
-sizeCaption 	= 36px
-sizeText 			= 16px
-
 .layout
-	width: widthLayout
-	margin: 0 auto
+	box-reset()
+	font: normal 14px/1.4 'PT Sans', Arial, sans-serif;
+
+	padding-top: 60px
+	min-width widthLayout
+
+	&__head
+		position fixed
+		width: 100%
+		top: 0
+		z-index: 500
+	
+	&__wrapper
+		width: widthLayout - 2*columnGap
+		margin: 0 auto
+		padding: 0 columnGap
+	
+	&__section
+		padding: 25px 0
+	
+		&_blue
+			background: #3875b7
+
+		&_yellow
+			background: #fdfaef
+			border: 1px solid #eee7cb	
+		
+		&_brown
+			background: #f8f8f8
+			border-top 1px solid #e3e3e3
+			border-bottom 1px solid #e3e3e3
+
+		&_shadowed
+			background url("../img/block-shadow.png") center bottom no-repeat
+			margin-bottom -10px
+			padding-bottom 45px	
+
+		&_search
+			padding 14px 0	
+	
+	&__searchForm
+		float right
+		width columnWidth + 3*column
+
+		.form__line
+			margin 0
+
+	&__IeWarning
+		
+		background: black
+		color: white
+		font-size: 14px
+		line-height: 18px
+		height 18px
+		text-align: center
+
+		p
+			box-reset()
 
 	&__caption
-		font-size: sizeCaption
+		color: #56657d
+		margin: 25px 0
+		font-size: 36px
+		font-weight: bold
+		text-align: center	
+
+		&_white
+			color: white
+
+		&_small
+			font-size: 24px
+			text-align: left
+
+		&_division
+			text-align left
+			margin-top 0	
+			line-height 40px		
+
+	&__colsWrapper
+		font-size: 0
+
+	&__col
+		display inline-block
+		vertical-align: top
+		width 5*column + columnWidth
+		font-size sizeText     
+
+		margin-left 2*columnGap 	
+
+		&:first-child
+			margin-left 0	
 	
-	&__text
-		font-size: sizeText
+	&__sloganWrapper
+		padding 15px 0
+
+	&__sloganCaption
+		font-size 18px
+		line-height 45px
+		font-weight bold
+		margin-right 5*column
+
+	&__footButton
+		float right
+		margin-left 2*columnGap	
+	
+	&__division
+		padding-left 4*column
+
+		&Caption
+			float left
+			width 4*column
+			margin-left -4*column
+	
+	&__contentWrapper
+		position relative
+		margin 20px 0
+
+	&__content
+		width 8*column + columnWidth
+		float right		
+
+	&__sidebar
+		width 2*column + columnWidth
+		padding-right 2*columnGap
+		float left	
+
+a
+	text-decoration: none
+	outline 0
+
+	img
+		border: 0
+
+input:focus
+	outline 0
+
+.nobr
+	white-space: nowrap	
+
+.lt-ie8
+	.layout__col
+		display inline
+		zoom 1
+
+.i-clear:after,
+.i-clear:before
+	content: ''
+	display: table
+	height: 0
+	clear: both	

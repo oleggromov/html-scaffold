@@ -1,0 +1,90 @@
+- var stylesheet	= "css/" + projectName + ".css"
+- var script		= "js/" + projectName + ".js"
+
+!!!
+//if lt IE 7
+	html.no-js.lt-ie9.lt-ie8.lt-ie7
+//if IE 7
+	html.no-js.lt-ie9.lt-ie8
+//if IE 8
+	html.no-js.lt-ie9
+//[if gt IE 8]><!
+html.no-js
+	//<![endif]
+	head
+		meta(charset="utf-8")
+
+		title= data.title
+
+		link(href=stylesheet, type="text/css", rel="stylesheet")
+		link(href='http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=latin,cyrillic', rel='stylesheet', type='text/css')
+		script(src='js/vendor/modernizr-2.6.2.min.js')
+		//if lt IE 9
+			script(src='js/vendor/html5shiv.js')
+	body.layout
+		.layout__head.head
+			//if lte IE 7
+				.layout__IeWarning
+					p= "К сожалению, вы пользуетесь устаревшим браузером. Функциональность сайта может быть ограничена."
+			.layout__wrapper
+				.head__inner
+					a.button.head__button(href="#")= data.headButton
+					//\/\/button
+
+					.head__logo
+						img(src="img/logo.png", width="169", height="18")
+					//\/\/logo
+							
+					nav.head__menu.menu
+						each item in data.menu.items
+							.menu__itemWrapper
+								if (item.current)
+									span.menu__item.menu__item_current= item.name
+								else	
+									a.menu__link.menu__item(href="#")= item.name
+								if (item.subitems.length) 
+									.menu__sub
+										.menu__subInnerWrapper
+											.menu__subInner
+												each name in item.subitems
+													a.menu__subItem(href="#")= name
+					//\/\/main menu
+		//\/\/head	
+
+		block content
+
+		.foot
+			.layout__wrapper
+				.foot__inner
+
+					.foot__logoWrapper	
+						img(src="img/logo-bottom.png", width="131", height="14").foot__logo
+
+					nav.footnav.i-clear.foot__nav
+						each item, i in data.footmenu
+							if (i < 3)
+								.footnav__item.footnav__item_right
+									a(href="#")= item
+							else
+								.footnav__item.footnav__item_left
+									a(href="#")= item
+					//\/\/footer navigation
+					
+					.foot__line= data.footDescription
+
+					.foot__line
+						!{data.email}
+
+					.foot__copyrights
+						p
+							!{data.copyrights.bitrix}
+						p
+							!{data.copyrights.frontend}	
+		//\/\/foot
+
+		script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+		script
+			window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')
+		script(src="js/jquery.uniform.js")
+		script(src="js/jquery.stickyeah.js")	
+		script(src=script)

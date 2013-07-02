@@ -36,6 +36,9 @@ This will create the following directory structure and files. Contents of css/ a
 	data/
 		index.jade
 	js/
+		vendor/
+			jquery-1.9.1.min.js
+			modernizr-2.6.2.min.js
 		scaffold.js
 		scaffold.min.js
 	tpl/
@@ -51,7 +54,8 @@ Then **install node modules**. If you don't have Node.js and Grunt.js installed,
 This will download needed modules and create node_modules/ which is ignored in this repo.
 
 	$ ls node-modules/
-	grunt  grunt-contrib-coffee  grunt-contrib-jade  grunt-contrib-less  grunt-contrib-stylus  grunt-contrib-uglify
+	grunt  grunt-contrib-coffee  grunt-contrib-jade  grunt-contrib-less  
+	grunt-contrib-stylus  grunt-contrib-uglify grunt-contrib-connect
 
 
 **Change your project name** in Gruntfile.coffee.
@@ -83,17 +87,30 @@ tpl/index.jade
 	include ../b/layout/layout
 
 	!!!
-	html
+	//if lt IE 7
+		html.no-js.lt-ie9.lt-ie8.lt-ie7
+	//if IE 7
+		html.no-js.lt-ie9.lt-ie8
+	//if IE 8
+		html.no-js.lt-ie9
+	//[if gt IE 8]><!
+	html.no-js
+		//<![endif]
 		head
 			link(href=stylesheet, type="text/css", rel="stylesheet")
+			script(src='js/vendor/modernizr-2.6.2.min.js')
 			title= title
 		body.layout
 			+layout(title, description)
 
+			script(src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+			script
+				window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\\/script>')
 			script(src=script)
 
 You can see the definition of layout's mixin in the included /b/layout/layout.jade. Each block has its own templates with mixins, so we can share blocks with different projects easily.
 
+Reset.css from YUI, Modernizr v2.6.2 and jQuery v1.9.1 have been already plugged in. Also there are [conditional comments from Paul Irish](http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/).
 
 Edit **styles for layout block**.
 
@@ -109,6 +126,7 @@ b/layout/layout.styl
 
 		&__caption
 			font-size: sizeCaption
+			font-style: italic
 		
 		&__text
 			font-size: sizeText
@@ -147,6 +165,14 @@ You can also run
 	$ grunt watch
 
 so grunt will watch and compile your *.jade, *.styl and *.coffee files located anywhere in your project tree. 
+
+### Simple Node.js server for project
+You can run
+
+	$ grunt connect watch
+
+so grunt will not only watch and compile necessary files but also start server on localhost:8000.
+You can make an ajax request no allowed if you would open index.html in browser just from filesystem.
 
 ## Why should HTML-coder use this
 
@@ -192,9 +218,19 @@ so grunt will watch and compile your *.jade, *.styl and *.coffee files located a
 		include ../b/layout/layout
 
 		!!!
-		html
+		//if lt IE 7
+			html.no-js.lt-ie9.lt-ie8.lt-ie7
+		//if IE 7
+			html.no-js.lt-ie9.lt-ie8
+		//if IE 8
+			html.no-js.lt-ie9
+		//[if gt IE 8]><!
+		html.no-js
+			//<![endif]
 			head
+				link(href="css/reset.css", type="text/css", rel="stylesheet")
 				link(href=stylesheet, type="text/css", rel="stylesheet")
+				script(src="js/vendor/modernizr-2.6.2.js")
 				title= title
 			body.layout
 				+layout(title, description)
@@ -203,15 +239,23 @@ so grunt will watch and compile your *.jade, *.styl and *.coffee files located a
 
 	resulting index.html (with whitespaces)
 
-		<!DOCTYPE html>
-		<html>
+		<!DOCTYPE html><!--[if lt IE 7]>
+		<html class="no-js lt-ie9 lt-ie8 lt-ie7"></html><![endif]--><!--[if IE 7]>
+		<html class="no-js lt-ie9 lt-ie8"></html><![endif]--><!--[if IE 8]>
+		<html class="no-js lt-ie9"></html><![endif]-->
+		<!--[if gt IE 8]><!-->
+		<html class="no-js">
+		  <!--<![endif]-->
 		  <head>
 		    <link href="css/scaffold.min.css" type="text/css" rel="stylesheet">
+		    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 		    <title>html-scaffold</title>
 		  </head>
 		  <body class="layout">
 		    <h1 class="layout__caption">html-scaffold</h1>
 		    <p class="layout__text">Project template for an HTML-coder.</p>
+		    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\\/script>')</script>
 		    <script src="js/scaffold.min.js"></script>
 		  </body>
 		</html>

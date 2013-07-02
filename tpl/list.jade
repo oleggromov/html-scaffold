@@ -1,0 +1,126 @@
+extends layout
+
+block content
+	section.layout__section.layout__section_brown.layout__section_search
+		.layout__wrapper.i-clear
+
+			form.form.form_search.layout__searchForm
+				fieldset
+					.form__line
+						input(type="text", placeholder="Поиск", name="q").form__text
+						input(type="submit", value="", name="s", title="Искать").form__searchButton	
+			//\/\/search form
+			
+			nav.breadcrumbs
+				each item in data.breadcrumbsDetail
+					if (item.current)
+						span.breadcrumbs__item= item.name
+					else	
+						a(href="#").link.breadcrumbs__item
+							span.link__underline= item.name
+			//\/\/breadcrumbs
+	//\/\/top nav section
+	
+	.layout__section
+		.layout__wrapper
+			section.layout__division.i-clear
+				header.layout__divisionCaption
+					h1.layout__caption.layout__caption_division= "Обучение"
+				article.text
+					!{data.listInfo}
+			//\/\/division info
+			
+			.i-clear.layout__contentWrapper
+				.layout__content
+					ul.news
+						mixin newsContent(data)
+							- var isGallery = (data.photos.length > 1) ? 'news__gallery' : ''
+
+							if (data.photos)
+								div(class="news__photos #{isGallery}", data-pagination-captions="")
+									each item in data.photos
+										.news__photo
+											img(src="#{item.src}", width="#{item.width}", height="#{item.height}")
+							.text.news__text
+								h2= data.caption
+								!{data.text}
+								p
+									a(href="#")= "Читать далее"					
+												
+						each item in data.news
+							mod = ''
+							if (item.photos.length > 1)
+								mod = mod + ' news__item_has_gallery'
+							if (item.mod)
+								mod = mod + ' news__item_picture_right'
+
+							li.news__item(class=mod)
+								.news__inner.i-clear
+									+newsContent(item)
+					//\/\materials
+					
+					ul.pager
+						each item in data.pager
+							li.pager__item
+								if (item.current)
+									span.pager__link.pager__link_current(href="#")= item.name
+								else
+									a.pager__link(href="#")= item.name
+						li.pager__item
+							a.link(href="#")
+								span.link__underline= "Следующая"			
+					//\/\/pager
+				//\/\/content	
+				.layout__sidebar
+					ul.subMenu.stickyeah(data-stickyeah-offset="75", data-stickyeah-class="stickyeah_fixed")
+						each item in data.subMenu
+							if (item.current)
+								li.subMenu__item.subMenu__item_current
+									span.subMenu__inner= item.name
+							else
+								li.subMenu__item
+									a(href='#').link.subMenu__inner
+										span.link__underline= item.name
+				//\/\/sidebar													
+
+	section.layout__section.layout__section_yellow
+		.layout__section
+			.layout__sloganWrapper
+				.layout__wrapper.i-clear
+					a.button.button_big.layout__footButton(href="#")= "Купить магазин"
+					a.lightButton.lightButton_big.layout__footButton(href="#")= "Узнать больше"
+					.layout__sloganCaption= "Запустить интернет-магазин, как два пальца об асфальт!"
+	//\/\/info section
+
+	section.layout__section.layout__section_shadowed
+		.layout__wrapper
+			.layout__colsWrapper
+				.layout__col
+					h2.layout__caption.layout__caption_small= "Чеклист вашего интернет-магазина"
+					ul.checkList
+						each item in data.checklist
+							li.checkList__item
+								p.checkList__caption
+									strong= item.caption
+								p= item.text
+						li.checkList__item	
+							a(href="#").lightButton= "Проверить"					
+				//\/\/column
+				.layout__col.text
+					h2.layout__caption.layout__caption_small= "Подписка на новые фишки"
+					p= "Подпишитесь на новые фишки про работу и продвижение магазина, чтобы быть в курсе последних новостей и всегда опережать конкурентов."
+
+					form.form
+						fieldset
+							.form__line.subscribe
+								input(type="text", placeholder="Введите ваш e-mail").form__text.subscribe__text
+								input(type="submit", value="Подписаться").form__submit.button.subscribe__submit			
+							.form__line
+								each item, n in data.subscribe
+									.form__checkboxWrapper
+										input(type="checkbox", id="item-#{n}", name="item-#{n}").form__checkbox
+										label.form__label(for="item-#{n}")
+											!{item}
+					//\/\/subscribe form
+				//\/\/column
+	//\/\/info section			

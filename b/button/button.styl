@@ -1,0 +1,64 @@
+bigButton()
+	height 45px
+	line-height 45px
+
+	padding 0 25px	
+	text-transform uppercase
+	letter-spacing 2px
+
+.button
+	display: inline-block
+	box-reset()
+
+	padding: 5px 20px
+	font-size: 14px
+	line-height: 20px
+	font-weight: bold
+	color: white
+	text-align center
+	background-linear-gradient(top, #48d152, 0, #20b12a, 100%)
+	border-radius(4px)
+	text-shadow 0 1px 1px #2c9d34
+
+	-webkit-box-sizing border-box
+	-moz-box-sizing border-box
+	box-sizing border-box
+
+	&:hover
+		background-linear-gradient(top, #56de5f, 0, #33c13d, 100%)
+	
+	&:active
+		background-linear-gradient(top, #20b12a, 0, #48d152, 100%)
+	
+	&_big
+		bigButton()
+
+.lightButton
+	display: inline-block
+	
+	box-reset()
+
+	padding: 10px 25px
+	font-size: 14px
+	line-height: 21px
+	text-align center
+
+	border-radius(4px)
+	border 1px solid #b2d0f2
+
+	color #0064d5
+	
+	text-transform: uppercase
+	letter-spacing 2px
+
+	&:hover
+		border-color: #0064d5
+
+	&_big
+		bigButton()	
+
+.lt-ie8
+	.button,
+	.lightButton
+		display: inline
+		zoom: 1		

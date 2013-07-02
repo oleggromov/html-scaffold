@@ -1,0 +1,38 @@
+.link
+	color: rgb(3,102,213)
+
+	&__underline
+		color: rgb(3,102,213)
+		border-bottom: 1px solid rgba(3,102,213,0.7)
+
+	&_pseudo
+		
+		.link__underline
+			border-bottom-style dotted
+	
+	&_white
+
+		color rgb(255,255,255)
+
+		.link__underline
+			color: rgb(255,255,255)
+			border-bottom-color: rgba(255,255,255,0.7)
+
+	&:hover
+
+		.link__underline
+			border-bottom-width: 0	
+
+.no-rgba 
+
+	.link
+		&__underline
+			border-bottom: 1px solid rgb(3,102,213)
+
+		&_white
+			.link__underline
+				border-bottom: 1px solid rgb(255,255,255)
+
+		&_pseudo
+			.link__underline
+				border-bottom-style dotted			

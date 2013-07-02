@@ -1,0 +1,114 @@
+.faq
+	
+	&__list
+		box-reset()
+		list-style none
+
+		width: 50%
+
+		-webkit-box-sizing border-box
+		-moz-box-sizing border-box
+		box-sizing border-box
+
+		padding-left: column
+
+		&:before
+			float left
+
+			width: 40px
+			height: 40px
+			margin-left: - column
+
+			background: url("../img/common-sprite.png") -60px 0 no-repeat
+			content: ''
+	
+	&__item
+		margin 1em 0
+
+	&__text
+		float right
+		margin-right -100%
+		margin-top -10px
+		width 100%
+
+		left -1000%
+		position: relative
+
+		opacity 0
+
+		-webkit-box-sizing border-box
+		-moz-box-sizing border-box
+		box-sizing border-box
+
+		border: 1px solid #e3e3e3
+		border-radius(6px)
+
+		box-shadow(0 4px 12px rgba(0,0,0,0.1))
+
+		&_current
+			left 0
+
+			opacity 1
+			transition(opacity 0.2s ease)
+
+		&:before
+			content ""
+			width 10px
+			height 10px
+			
+			background white
+			border 1px solid #e3e3e3
+
+			transform(rotate(-45deg))
+			box-shadow(0 0 12px rgba(0,0,0,0.1))
+
+			position absolute
+			z-index 1
+			left -6px
+			margin-top 13px
+
+		&:after
+			content ""
+			width 0
+			height 1px
+			background #e3e3e3
+
+			position: absolute
+			z-index 0
+			left -100%
+			top 19px
+
+		&_current
+
+			&:after
+				width 100%
+				transition(width 0.3s linear)	
+
+	&__textInner
+		position: relative
+		z-index 2
+		background white
+		padding 0 1.2em
+		overflow auto
+
+		border-radius(6px)
+	
+	&__trigger
+		position relative
+
+		background #f8f8f8
+		z-index 10
+		padding-right: 10px
+
+		&_current
+
+			& .faq__triggerInner
+				border-bottom: 0
+				color: #56657d
+
+	&__triggerInner
+		padding-top 0.2em	
+
+.lt-ie9 
+	.faq__text:before
+		display none				
