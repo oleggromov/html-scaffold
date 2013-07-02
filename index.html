@@ -6,15 +6,205 @@
 <html class="no-js">
   <!--<![endif]-->
   <head>
-    <link href="css/scaffold.min.css" type="text/css" rel="stylesheet">
-    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    <title>html-scaffold</title>
+    <meta charset="utf-8">
+    <title>Magazinster — сделать магазин легко, как два пальца об асфальт!</title>
+    <link href="css/magazinster.css" type="text/css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script><!--[if lt IE 9]>
+    <script src="js/vendor/html5shiv.js"></script><![endif]-->
   </head>
   <body class="layout">
-    <h1 class="layout__caption">html-scaffold</h1>
-    <p class="layout__text">Project template for an HTML-coder.</p>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\\/script>')</script>
-    <script src="js/scaffold.min.js"></script>
+    <div class="layout__head head"><!--[if lte IE 7]>
+      <div class="layout__IeWarning">
+        <p>К сожалению, вы пользуетесь устаревшим браузером. Функциональность сайта может быть ограничена.</p>
+      </div><![endif]-->
+      <div class="layout__wrapper">
+        <div class="head__inner"><a href="#" class="button head__button">Онлайн-демо</a>
+          <!--//button-->
+          <div class="head__logo"><img src="img/logo.png" width="169" height="18"></div>
+          <!--//logo-->
+          <nav class="head__menu menu">
+            <div class="menu__itemWrapper"><a href="#" class="menu__link menu__item">Возможности</a>
+            </div>
+            <div class="menu__itemWrapper"><a href="#" class="menu__link menu__item">Новости</a>
+              <div class="menu__sub">
+                <div class="menu__subInnerWrapper">
+                  <div class="menu__subInner"><a href="#" class="menu__subItem">О проекте</a><a href="#" class="menu__subItem">Разработчики решения</a><a href="#" class="menu__subItem">Контактная информация</a><a href="#" class="menu__subItem">Частые вопросы</a><a href="#" class="menu__subItem">Техническая поддержка</a><a href="#" class="menu__subItem">Обучающие материалы</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="menu__itemWrapper"><a href="#" class="menu__link menu__item">Поддержка</a>
+            </div>
+            <div class="menu__itemWrapper"><a href="#" class="menu__link menu__item">Отзывы</a>
+            </div>
+            <div class="menu__itemWrapper"><a href="#" class="menu__link menu__item">Контакты</a>
+            </div>
+            <div class="menu__itemWrapper"><span class="menu__item menu__item_current">Цена</span>
+            </div>
+          </nav>
+          <!--//main menu-->
+        </div>
+      </div>
+    </div>
+    <!--//head	-->
+    <div class="gallery">
+      <div style="background-image: url('dummy/gallery-bg.jpg')" class="gallery__inner">
+        <div data-pagination-captions="Отслеживание заказов, Продуманное СЕО" class="gallery__slidesjs">
+          <div class="gallery__item">
+            <div class="layout__wrapper gallery__itemInner">
+              <h2 class="gallery__caption">Готовый интернет-магазин женской одежды, обуви, белья и аксессуаров</h2>
+              <div class="gallery__description">Полностью готовое решение для быстрого развертывания интернет-магазина. В решении заложено все, чтобы ваш магазин имел отличные показатели конверсии.</div>
+              <div class="gallery__featureWrapper i-clear">
+                <div class="gallery__preview"><img src="dummy/gallery-preview.jpg" width="580" height="349"></div>
+                <div class="gallery__featureDescription">
+                  <h3>Автоматическое отслеживание почтовых отправлений</h3>
+                  <p>Гений представляет собой конструктивный ассоцианизм, не считаясь с затратами. Надо сказать, что каждая сфера рынка критично уравновешивает естественный структурализм</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery__item">
+            <div class="layout__wrapper gallery__itemInner">
+              <h2 class="gallery__caption">Мгновенная и точная индексация всех товаров вашего магазина</h2>
+              <div class="gallery__description">Благодаря самым современным технологиям поискового продвижения, каталог ваших товаров максимально точно будет проиндексирован поисковыми роботами</div>
+              <div class="gallery__featureWrapper i-clear">
+                <div class="gallery__preview"><img src="dummy/gallery-preview-2.jpg" width="580" height="349"></div>
+                <div class="gallery__featureDescription">
+                  <h3>Очень простая, интуитивно понятная настройка ключевых слов</h3>
+                  <p>Максимум упорядочивает интеграл Дирихле, что неудивительно. Прямоугольная матрица создает параллельный интеграл от функции комплексной переменной.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--//gallery-->
+    <div class="layout__section">
+      <div class="layout__wrapper">
+        <div class="layout__caption">Запуск магазина за 4 дня!</div>
+        <ul class="features features_start">
+          <li class="features__item">
+            <h2 class="features__caption">Покупка</h2>
+            <div class="text">
+              <p>В комплект уже все включено и проверено на работоспособность</p>
+              <p class="features__day">1 день</p>
+            </div>
+          </li>
+          <li class="features__item">
+            <h2 class="features__caption">Установка</h2>
+            <div class="text">
+              <p>По вашему пожеланию мы поможем вам все установить и настроить</p>
+              <p class="features__day">1 день</p>
+            </div>
+          </li>
+          <li class="features__item">
+            <h2 class="features__caption">Обучение</h2>
+            <div class="text">
+              <p>Научим вас работать с сайтом&nbsp;— это не сложнее работы в Ворде</p>
+              <p class="features__day">1 день</p>
+            </div>
+          </li>
+          <li class="features__item">
+            <h2 class="features__caption">Наполнение</h2>
+            <div class="text">
+              <p>Вам останется только внести материалы на сайт</p>
+              <p class="features__day">1 день</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--//4 days section-->
+    <div class="layout__section layout__section_blue">
+      <div class="layout__wrapper">
+        <div class="layout__caption layout__caption_white">Преимущества этого решения</div>
+        <ul class="features features_benefits">
+          <li class="features__item"><a href="" class="features__caption link link_white">
+              <div class="features__preview"><img src="dummy/clock.png" width="122" height="122"></div><span class="link__underline">Срок запуска от 4 дней</span></a>
+            <div class="text">Серьезный сайт может быть готов за&nbsp;4&nbsp;дня (аналогичное решение разрабатывается <span class='nobr'>1-2 мес.)</span>		</div>
+          </li>
+          <li class="features__item"><a href="" class="features__caption link link_white">
+              <div class="features__preview"><img src="dummy/lollipop.png" width="122" height="122"></div><span class="link__underline">Низкая стоимость</span></a>
+            <div class="text">Заказать то&nbsp;же самое в&nbsp;веб-студии составит от&nbsp;<span class='nobr'>90-150</span> т.р.		</div>
+          </li>
+          <li class="features__item"><a href="" class="features__caption link link_white">
+              <div class="features__preview"><img src="dummy/gear.png" width="122" height="122"></div><span class="link__underline">Богатый функционал</span></a>
+            <div class="text">В&nbsp;готовых решениях уже реализована масса возможностей. Ваш сайт будет многое уметь.		</div>
+          </li>
+          <li class="features__item"><a href="" class="features__caption link link_white">
+              <div class="features__preview"><img src="dummy/expand.png" width="122" height="122"></div><span class="link__underline">Возможность расширения</span></a>
+            <div class="text">Ваш сайт всегда можно доработать или расширить новыми модулями		</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--//benefits-->
+    <div class="layout__section">
+      <div class="layout__wrapper">
+        <div class="layout__caption">Функциональные особенности</div>
+        <ul class="functions">
+          <li class="functions__item"><a href="#" class="functions__caption link"><img src="dummy/window.png" width="40" height="37" class="functions__preview"><span class="link__underline">Автоматизированная оптимизация страниц сайта под поисковики (SEO)</span></a>
+            <div class="text">
+              <ul>
+                <li>Увеличивает количество посетителей с поисковых систем.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="functions__item"><a href="#" class="functions__caption link"><img src="dummy/cart.png" width="40" height="34" class="functions__preview"><span class="link__underline">Возможность покупки без регистрации</span></a>
+            <div class="text">
+              <ul>
+                <li>Увеличение конверсии сайта за счет сокращения препятствия на пути к покупке в виде обязательной регистрации.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="functions__item"><a href="#" class="functions__caption link"><img src="dummy/pushpin.png" width="25" height="40" class="functions__preview"><span class="link__underline">Отслеживание отправленных заказов</span></a>
+            <div class="text">
+              <ul>
+                <li>Уменьшает количество возвратов при оплате наложенным платежом через Почту России;</li>
+                <li> Позволяет получателю отслеживать ход заказа на сайте интернет-магазина.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="functions__item"><a href="#" class="functions__caption link"><img src="dummy/photography.png" width="40" height="37" class="functions__preview"><span class="link__underline">Уникализация изображений и их автоматическая обработка</span></a>
+            <div class="text">
+              <ul>
+                <li>Экономия времени при добавлении товаров или статей, в которых содержится много изображений;</li>
+                <li>Улучшение индексации изображений поисковыми системами и больше посетителей с поиска по картинкам.</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="layout__wrapper">
+        <div class="foot__inner">
+          <div class="foot__logoWrapper">	<img src="img/logo-bottom.png" width="131" height="14" class="foot__logo"></div>
+          <nav class="footnav i-clear foot__nav">
+            <div class="footnav__item footnav__item_right"><a href="#">Цена</a></div>
+            <div class="footnav__item footnav__item_right"><a href="#">Контакты</a></div>
+            <div class="footnav__item footnav__item_right"><a href="#">Отзывы</a></div>
+            <div class="footnav__item footnav__item_left"><a href="#">Возможности</a></div>
+            <div class="footnav__item footnav__item_left"><a href="#">Новости</a></div>
+            <div class="footnav__item footnav__item_left"><a href="#">Поддержка</a></div>
+          </nav>
+          <!--//footer navigation-->
+          <div class="foot__line">Готовый интернет-магазин женской обуви, белья и аксессуаров</div>
+          <div class="foot__line"><a href='mailto:info@magazinster.ru'>info@magazinster.ru</a></div>
+          <div class="foot__copyrights">
+            <p>Сделано на <a href='http://1c-bitrix.ru/' target='_blank'>Битрикс</a></p>
+            <p>Верстка — <a href='http://vitkarpov.github.io/' target='_blank'>Виктор Карпов</a>	</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--//foot-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+    <script src="js/jquery.uniform.js"></script>
+    <script src="js/jquery.stickyeah.js">	</script>
+    <script src="js/magazinster.js"></script>
   </body>
 </html>

@@ -1,0 +1,33 @@
+.head
+	background: white
+	line-height: 30px
+	vertical-align: middle
+	box-shadow: 0 4px 12px rgba(0,0,0,0.15)
+
+	&__inner
+		padding: 1.5*columnGap 0
+
+	&__menu
+		margin: 0 2*column 0 3*column
+
+	&__logo
+		float: left
+
+	&__button
+		float: right
+		width 2*columnWidth + 2*columnGap
+
+	&__logo
+		display: inline-block
+		width: 169px
+		height: 18px
+		padding: 6px 0	
+
+.no-boxshadow
+	.head
+		border-bottom: 1px solid lightgray		
+
+.lt-ie8
+	.head__logo
+		display inline
+		zoom 1		

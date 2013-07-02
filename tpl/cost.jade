@@ -1,0 +1,112 @@
+extends layout
+
+mixin tooltip(data)
+	.tooltip
+		a(href="#").link.link_pseudo.tooltip__trigger
+			span.link__underline= data.name
+		if (data.tooltip)
+			.tooltip__content.text
+				!{data.tooltip}	
+
+mixin defs(data, mod)
+	- if (mod)
+		- mod = "defs_" + mod
+	- else
+		- mod = ''
+
+	table(class="defs #{mod}")
+		tbody
+			tr
+				td.defs__term
+					.defs__termInner= data.name
+				td.defs__content= data.value + " р."
+
+block content
+	section.layout__section.layout__section_brown.layout__section_search
+		.layout__wrapper.i-clear
+
+			form.form.form_search.layout__searchForm
+				fieldset
+					.form__line
+						input(type="text", placeholder="Поиск", name="q").form__text
+						input(type="submit", value="", name="s", title="Искать").form__searchButton	
+			//\/\/search form
+			
+			nav.breadcrumbs
+				each item in data.breadcrumbs
+					if (item.current)
+						span.breadcrumbs__item= item.name
+					else	
+						a(href="#").link.breadcrumbs__item
+							span.link__underline= item.name
+			//\/\/breadcrumbs
+	//\/\/top nav section
+	
+	.layout__section
+		.layout__wrapper
+			section.layout__division.i-clear
+				header.layout__divisionCaption
+					h1.layout__caption.layout__caption_division= "Стоимость"
+				article.text
+					!{data.costInfo}
+			//\/\/division info
+			
+			form.offers.form
+				fieldset
+					each offer, i in data.offers
+						article(class="offers__offer offers__offer_#{offer.mod}")
+							- if (offer.mod == "middle")
+								span.offers__badge= "Оптимальный"
+							h2.offers__caption= offer.caption
+							ul.offers__features
+								each item in offer.features
+									if (item.disabled)
+										li.offers__feature.offers__feature_disabled
+											+tooltip(item)
+									else
+										li.offers__feature
+											+tooltip(item)
+							//\/\/offer features
+
+							.offers__redactions
+								p= "Выберите редакцию 1С-Битрикс:"
+								each item, n in offer.redactions
+									.form__checkboxWrapper
+										input(type="radio", id="item-#{n}", name="radio-#{i}").form__checkbox
+										label.form__label(for="item-#{n}")
+											+tooltip(item)
+							//\/\/offer redactions
+
+							.offers__options
+								p= "Выберите опции:"
+								each item, n in offer.options
+									.form__checkboxWrapper
+										input(type="checkbox", id="item-#{n}", name="radio-#{n}").form__checkbox
+										label.form__label(for="item-#{n}")
+											+tooltip(item)
+							//\/\/offer options
+
+							.offers__defs
+								each item in offer.prices
+									+defs(item)	
+							//\/\/offer cost
+
+							.offers__total
+								+defs(offer.total, "big")
+							//\/\/offer total price
+							
+							.offers__buttonWrapper
+								input(type="submit", value="Купить магазин", name="b").button.button_big	
+							//\/\/buy button
+			//\/\/offers
+			
+			section.helpInfo
+				article.text
+					!{data.helpInfo.text}
+				
+				footer
+					a(href="#").lightButton.lightButton_big.helpInfo__button= data.helpInfo.button
+					p.helpInfo__phoneWrapper
+						| или звоните
+						strong.helpInfo__phone= data.helpInfo.phone	
+			//\/\/help info

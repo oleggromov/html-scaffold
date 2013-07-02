@@ -1,0 +1,90 @@
+paddingItem = 20px
+borderWidth = 1px
+
+.reviews
+	box-reset()
+	font-size 0
+
+	list-style none
+	
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: flex;
+	
+	margin 25px 0
+
+	&__item
+		position relative
+		box-reset()
+
+		display inline-block
+		vertical-align top
+		width 3*column + columnWidth - 2*paddingItem - 2*borderWidth
+		margin-left 2*columnGap
+
+		padding 0 paddingItem
+		border: borderWidth solid #afb9ca
+		border-radius: 6px
+
+		font-size sizeText
+		background white
+
+		&:after
+			position absolute
+			z-index -1
+			left 10%
+			bottom 0
+
+			width 80%
+			height 14px
+
+			box-shadow(0 6px 21px rgba(0,0,0,0.2))
+
+			content ""
+
+		&:before
+			position absolute
+			z-index 1
+			left 10%
+			bottom 0
+			
+			width 80%
+			height 14px
+
+			background white
+
+			content ""
+
+		&:first-child
+			margin-left 0
+	
+	&__inner
+
+		&:after
+			position absolute
+			right 20%
+			bottom -6px
+
+			width 10px
+			height 10px
+			background white
+			border 1px solid #afb9ca
+
+			transform(rotate(-45deg))
+
+			content ""
+
+	&__caption
+		font-weight bold	
+		padding-top 0.2em	
+
+.lt-ie9 
+	.reviews__inner:after
+		display none
+
+.lt-ie8
+	.reviews__item
+		display inline
+		zoom 1

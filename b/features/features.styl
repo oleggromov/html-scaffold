@@ -1,0 +1,63 @@
+.features
+	
+	font-size: 0
+	box-reset()	
+	margin-top 25px
+
+	&__item
+		display inline-block
+		width: 25%
+		vertical-align: top
+		font-size: sizeText
+		-webkit-box-sizing border-box
+		-moz-box-sizing border-box
+		box-sizing border-box
+
+		margin-bottom: 25px
+	
+	&__caption
+		display: block
+		margin: 18px 0
+		font-size: 18px
+
+		.link__underline
+			padding-top 0.2em
+	
+	&__day
+		color: #1dad27	
+	
+	&__item + &__item
+			position: relative
+			padding-left: 4*columnGap
+	
+	&__preview
+		float left
+		margin-top: -150px
+
+	&_start
+
+		.features__item + .features__item
+
+			&:before
+				content: ""
+				
+				position: absolute
+				left: 0
+				top: 25px
+
+				width: 8px
+				height: 12px
+				background: url(../img/common-sprite.png) 0 -120px no-repeat
+	
+	&_benefits
+		color white
+
+		.text
+			color white
+
+		.features__item
+			padding-top: 150px
+
+.lt-ie8
+	.features__item
+		display block	

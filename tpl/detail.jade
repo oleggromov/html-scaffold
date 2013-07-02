@@ -1,0 +1,214 @@
+extends layout
+
+mixin faq(options)
+	- var mod = '';
+	- if (options.mod) mod = 'related__list_' + options.mod;
+	div(class="related__list #{mod}")	
+		each item, i in options.data	
+			.related__caption
+				if (options.mod == 'faq')
+					a.link.link_pseudo(href="#")
+						span(data-id="#{i}").link__underline.related__trigger= item.name
+				else
+					a.link(href="#")
+						span.link__underline= item.name		
+			if (options.mod == 'faq')			
+				.related__text.text(data-id="#{i}")
+					!{item.text}
+			else
+				.related__text.text
+					!{item.text}		
+
+block content
+	section.layout__section.layout__section_brown.layout__section_search
+		.layout__wrapper.i-clear
+
+			form.form.form_search.layout__searchForm
+				fieldset
+					.form__line
+						input(type="text", placeholder="Поиск", name="q").form__text
+						input(type="submit", value="", name="s", title="Искать").form__searchButton	
+			//\/\/search form
+			
+			nav.breadcrumbs
+				each item in data.breadcrumbsDetail
+					if (item.current)
+						span.breadcrumbs__item= item.name
+					else	
+						a(href="#").link.breadcrumbs__item
+							span.link__underline= item.name
+			//\/\/breadcrumbs
+	//\/\/top nav section
+	
+	.layout__section
+		.layout__wrapper
+			section.layout__division.i-clear
+				header.layout__divisionCaption
+					h1.layout__caption.layout__caption_division= "Управление магазином"
+				article.text
+					!{data.costInfo}
+			//\/\/division info
+			
+			.i-clear.layout__contentWrapper
+				.layout__content
+					.textSection
+						.text
+							h1= data.detail.caption
+							p
+								| Теорема Гаусса - Остроградского отражает изоморфный лист Мёбиуса, что и требовалось доказать. Экстремум функции независим. Интеграл Пуассона обуславливает экстремум функции, откуда следует доказываемое равенство. Геодезическая линия, очевидно, однородно концентрирует эмпирический максимум, явно демонстрируя всю чушь вышесказанного. Скалярное поле трансформирует многомерный график функции многих переменных, что и требовалось доказать.
+							.text__picture
+								img(src='dummy/detail-text-picture.jpg', width='370', height='253')
+								p
+									| Персональный кабинет. Раздел «Мои заказы»
+							p
+								| Когнитивный диссонанс возникает из-за несоответствия двух «когниций» (или «знаний») индивида. Индивид, располагая информацией по какому-либо вопросу, бывает вынужден пренебречь ею при принятии некоторого решения, а здесь будет ссылка внутри текста. Как следствие, <a href='#'>возникает несоответствие</a> («диссонанс») между установками человека и его реальными поступками.
+							blockquote
+								| В результате такого поведения происходит смена определенных (на которые ситуация так или иначе влияет) установок человека, а оправдать это изменение можно исходя из того, что человеку жизненно необходимо поддерживать согласованность своих знаний[3].
+							p
+								| Поэтому люди готовы оправдать свои заблуждения: человек, совершивший проступок или ошибку, склонен оправдывать себя в мыслях, постепенно сдвигая свои убеждения относительно случившегося в сторону того, что происшедшее, на самом деле, не так страшно. Таким образом индивид «регулирует» своё мышление, чтобы уменьшить конфликт внутри себя.
+							h2
+								| Просто крупный и менее четкий заголовок H2 который умещается в две строки. А може быть и в одну строку.
+							.text__note
+								h3= "На заметку"
+								.text__noteInner
+									p
+										| Когнитивный диссонанс возникает из-за несоответствия двух «когниций» (или «знаний») индивида. Индивид, располагая информацией по какому-либо вопросу, бывает вынужден пренебречь ею при принятии некоторого решения, а здесь будет <a href='#'>ссылка внутри текста</a>.
+									ul
+										li
+											| Как следствие, возникает несоответствие («диссонанс») между установками человека и его реальными поступками.
+										li
+											| Как следствие, возникает несоответствие («диссонанс») между установками человека и его реальными поступками возникает несоответствие («диссонанс») между установками человека и его реальными поступками.
+							
+							p
+								| Поэтому люди готовы оправдать свои заблуждения: человек, совершивший проступок или ошибку, склонен оправдывать себя в мыслях, постепенно сдвигая свои убеждения относительно случившегося в сторону того, что происшедшее, на самом деле, не так страшно. Таким образом индивид «регулирует»
+							code
+								|function People(a,b) {
+								|   var a, b, m;
+								|               
+								|   this.a = a;
+								|   this.b = b;
+								|} 
+
+						.tags__wrapper
+							|Теги по теме: 
+							nav.tags
+								each item in data.tags
+									a.tags__item(href='#')= item
+
+						.text			
+							p
+								| Автор: 
+								a(href='#')= "Юрий Кудренко"			
+
+					.textSection
+						h2= "Таблица совместимости"
+
+						- var table = data.detail.table
+						.text
+							table
+								thead
+									each item in table.thead
+										th= item
+								tbody
+									each tr in table.tbody
+										tr
+											each item in tr
+												td
+													if (item == "+")
+														i.ico-plus= item
+													if (item == "-")
+														i.ico-minus= item
+													if (item != "+" && item != "-")
+														!{item}	
+
+					.textSection
+						h2= "Списки"
+						.text
+							ul
+								li= "Антинормульки"
+								li= "Психолипиды"
+									ul
+										li= "Антинормульки"
+										li= "Психолипиды"
+										li= "Тринктофазаны"	
+								li= "Тринктофазаны"	
+
+							ol
+								li= "Антинормульки"
+								li= "Психолипиды"
+								li= "Тринктофазаны"									
+
+					.textSection
+						h2= "Оформление заказа"
+						- var picture = data.detail.picture
+						.text
+							p= "Это гармоничная квинтэссенция абстрактных звуков на полотне музыкальных дорожек-картин. Наше комьюнити проводит регулярные живые выступления с талантливыми музыкантами в пространстве уютных клубов Петербурга, где слушатели погружаются во вселенную изысканных мелодий и визуального наслаждения."
+							.text__pictureWrapper
+								img(src="#{picture.src}", width="#{picture.width}", height="#{picture.height}")
+
+					.textSection
+						h2= "Дополнительные материалы по отслеживанию направлений"
+						.related.related_posts
+							.related__inner
+								+faq({data: data.related.posts, mod: false})
+
+					.textSection
+						h2= "Частые вопросы по отслеживанию направлений"
+						.related.related_questions
+							.related__inner
+								+faq({data: data.related.questions, mod: 'faq'})			
+
+				//\/\/content	
+				.layout__sidebar
+					ul.subMenu.stickyeah(data-stickyeah-offset="75", data-stickyeah-class="stickyeah_fixed")
+						each item in data.subMenu
+							if (item.current)
+								li.subMenu__item.subMenu__item_current
+									span.subMenu__inner= item.name
+							else
+								li.subMenu__item
+									a(href='#').link.subMenu__inner
+										span.link__underline= item.name
+				//\/\/sidebar													
+
+	section.layout__section.layout__section_yellow
+		.layout__section
+			.layout__sloganWrapper
+				.layout__wrapper.i-clear
+					a.button.button_big.layout__footButton(href="#")= "Купить магазин"
+					a.lightButton.lightButton_big.layout__footButton(href="#")= "Узнать больше"
+					.layout__sloganCaption= "Запустить интернет-магазин, как два пальца об асфальт!"
+	//\/\/info section
+
+	section.layout__section.layout__section_shadowed
+		.layout__wrapper
+			.layout__colsWrapper
+				.layout__col
+					h2.layout__caption.layout__caption_small= "Чеклист вашего интернет-магазина"
+					ul.checkList
+						each item in data.checklist
+							li.checkList__item
+								p.checkList__caption
+									strong= item.caption
+								p= item.text
+						li.checkList__item	
+							a(href="#").lightButton= "Проверить"					
+				//\/\/column
+				.layout__col.text
+					h2.layout__caption.layout__caption_small= "Подписка на новые фишки"
+					p= "Подпишитесь на новые фишки про работу и продвижение магазина, чтобы быть в курсе последних новостей и всегда опережать конкурентов."
+
+					form.form
+						fieldset
+							.form__line.subscribe
+								input(type="text", placeholder="Введите ваш e-mail").form__text.subscribe__text
+								input(type="submit", value="Подписаться").form__submit.button.subscribe__submit			
+							.form__line
+								each item, n in data.subscribe
+									.form__checkboxWrapper
+										input(type="checkbox", id="item-#{n}", name="item-#{n}").form__checkbox
+										label.form__label(for="item-#{n}")
+											!{item}
+					//\/\/subscribe form
+				//\/\/column
+	//\/\/info section

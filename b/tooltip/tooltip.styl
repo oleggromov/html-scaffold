@@ -1,0 +1,63 @@
+.tooltip
+
+	position relative
+	
+	&__content
+		left: -1000%
+		top 100%
+		margin-top 10px
+
+		position absolute
+		z-index 10
+		
+		width 210px
+		padding 0 20px
+		border 1px solid #ede3b7
+
+		background #fff1c0
+		box-shadow(0 4px 12px rgba(0,0,0,0.2))
+
+		opacity(0)
+		transition(opacity 0.2s ease)
+
+		cursor default
+
+		&:after
+			position absolute
+			left 20px
+			top 1px 	
+
+			width 20px
+			height 20px
+			margin-top -6px
+
+			background #fff1c0
+
+			transform(rotate(-45deg))
+			content ""
+
+		&_opened
+			opacity(1)
+			left 0
+
+	&__closeButton
+		position absolute
+		right 0
+		top 0
+
+		width 20px
+		height 20px		
+
+		text-align center
+		line-height 20px
+
+		cursor pointer
+
+	&__trigger
+
+		&_current
+			color colorText
+
+			.link__underline
+				color colorText
+				border-bottom 0

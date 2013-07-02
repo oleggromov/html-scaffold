@@ -1,0 +1,150 @@
+galleryHeight = 610px
+paginationHeight = 70px
+
+halfWidth = widthLayout/2
+
+.gallery
+	overflow hidden
+	position relative
+
+	&:after
+		content ""
+		position absolute
+		left 0
+		bottom 0
+		z-index 20
+		height paginationHeight
+		width 100%
+		background white
+		box-shadow(0 -18px 32px rgba(0,0,0,0.4))
+
+	&__inner
+		background white
+
+		-webkit-background-size cover
+		background-size cover
+
+		background-position center center
+		background-repeat no-repeat
+
+	&__item
+		position: relative
+		height: galleryHeight
+
+	&__slidesjs
+		position: relative
+		height: galleryHeight
+		padding-bottom: paginationHeight
+
+	&__itemInner
+		padding: 40px columnGap 0 columnGap
+		height: galleryHeight - 40px
+		overflow: hidden
+
+	&__caption
+		color white
+		font-size 36px
+		line-height 1.2
+		text-align center
+		margin 20px 10%
+
+	&__description
+		font-size 16px
+		color white	
+		text-align center
+		margin: 20px 10%
+
+	&__featureWrapper
+		padding-top 20px
+		overflow hidden
+
+	&__featureDescription
+		color: white
+		margin-top: 40px
+
+	&__featureCaption
+		font-size: 21px
+		line-height: 1.2	
+
+	&__preview
+		float left
+		padding-top 20px
+		width 580px
+		background white url("../img/gallery-preview-bg.jpg") center top no-repeat
+		
+		text-align: center
+
+		box-shadow(0 18px 42px rgba(0,0,0,5))	
+		border-radius(6px)
+		overflow hidden		
+
+		margin: 0 30px	
+	
+	.slidesjs-pagination
+		box-reset()
+
+		position absolute
+		z-index 30
+		left 50%
+		bottom 0
+		margin-left: - halfWidth
+		
+		width widthLayout
+		padding-bottom: 10px
+		text-align: center
+
+		background: url("../img/block-shadow.png") center bottom no-repeat
+		
+		&-item
+			position: relative
+			display: inline-block
+			vertical-align: top
+			margin: 0 20px
+			line-height: paginationHeight - 13
+			height paginationHeight - 13
+
+		&-item_active
+			border-bottom: 3px solid #1dad27
+
+			& .link__underline
+				border-bottom: 0
+
+			& .link
+				color: #1dad27	
+
+	.slidesjs-navigation
+		position: absolute
+		z-index: 15
+		width 200px
+		height 100%
+		top 0
+		font-size 0
+
+		&:after
+			content ""
+			width 60px
+			height 60px
+			position: absolute
+			bottom: 40%
+			background: url("../img/common-sprite.png") no-repeat
+
+	.slidesjs-next
+		right 0
+
+		&:after
+			right: 50%
+			margin-right: -30px
+			background-position: 0 -60px
+
+	.slidesjs-previous
+		left 0
+
+		&:after
+			left: 50%
+			margin-left: -30px
+			background-position: 0 0
+
+.lt-ie8
+	.slidesjs-pagination-item
+		display inline
+		zoom 1		

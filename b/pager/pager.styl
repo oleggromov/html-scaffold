@@ -1,0 +1,30 @@
+.pager
+	
+	box-reset()
+	list-style none
+	font-size 0
+	margin-top 40px
+
+	&__item
+		display inline-block
+		font-size sizeText
+		margin 0 2px
+		
+		.lt-ie8 &
+			display inline
+			zoom 1
+
+	&__link
+		display inline-block
+		padding 5px 10px
+		font-size sizeText
+		color colorText
+
+		border 1px solid white
+		border-radius(3px)
+
+		&:hover
+			border-color #b2d0f2
+
+		&_current
+			border-color: #0064d5			

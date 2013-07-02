@@ -1,0 +1,62 @@
+.related
+	
+	&__inner
+		padding 0.5em 0 1.5em column
+
+		&:before
+			float left
+			margin-left - column
+
+			width 58px
+			height 58px
+			background url("../img/common-sprite.png") no-repeat
+
+			content ""
+
+	&_posts
+
+		.related__inner:before
+			background-position: -103px -336px
+
+	&_questions
+
+		.related__inner:before
+			background-position: -162px -336px
+	
+		.related__text
+			overflow hidden
+			max-height 0
+			
+			padding-left column
+
+			transition(all 0.3s ease)
+
+			&:before
+				content "Ответ:"
+				float left
+				margin-left - column
+				margin-top sizeText
+				color #56657d
+				font-style italic
+
+		.related__text_current
+			overflow hidden
+			max-height 1000px
+			margin-top -1em
+
+			transition(all 0.3s ease)
+
+	&__trigger
+
+		&_current
+			color colorText
+			font-weight bold
+			border-bottom 0	
+
+			cursor default
+
+	&__caption
+		margin 0.5em 0
+
+
+

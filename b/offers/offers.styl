@@ -1,0 +1,195 @@
+offerPadding = 20px
+borderWidth  = 2px
+badgeContainerHeight = 140px
+
+.offers
+	
+	font-size 0
+
+	&__offer
+		position relative
+		display inline-block
+		width 3*column + columnWidth - 2*offerPadding - borderWidth
+		padding offerPadding
+		border 1px solid #eee7cb
+		margin-left columnGap*2
+
+		vertical-align bottom
+
+		font-size sizeText
+		
+		&:after
+			position absolute
+			z-index -1
+			left 10%
+			bottom 0
+
+			width 80%
+			height 14px
+
+			box-shadow(0 6px 21px rgba(0,0,0,0.2))
+
+			content ""
+
+		&:before
+			position absolute
+			z-index 1
+			left 10%
+			bottom 0
+			
+			width 80%
+			height 14px
+
+			content ""
+
+		&:first-child
+			margin-left 0
+
+		&_small
+			background #fdfaef	
+
+			&:before
+				background @background
+
+		&_middle
+			background #fff7dc
+			margin-top badgeContainerHeight
+
+			&:before
+				background @background
+
+		&_big
+			background #fff1c0	
+
+			&:before
+				background @background
+
+	&__caption
+		position relative
+		font-size 1.5em
+		font-weight bold
+		padding 25px 0
+		margin 0
+
+		text-align center
+
+		&:after
+			width 285px
+			height 9px
+
+			position absolute
+			left 50%
+			bottom 0
+			margin-left @width * 0.5 * -1
+
+			background url("../img/common-sprite.png") 0 -165px no-repeat
+
+			content ""
+	
+	&__features
+		box-reset()
+		list-style none
+		
+		margin 10px 0
+
+	&__feature
+		box-reset()
+
+		margin 1em 0
+
+		padding-left 25px
+		
+		&:before
+			width 19px
+			height 19px
+			
+			float left
+			margin-left -25px
+
+			background url("../img/common-sprite.png") 0 -174px no-repeat
+
+			content ""
+
+		&_disabled
+			
+			margin-top 2em
+
+			&:before
+				background-position: 0 -193px	
+		
+		&_disabled + &_disabled
+			margin-top 1em
+				
+
+	&__redactions
+		position relative
+		background #f6f0dc
+
+		margin 0 - offerPadding
+		margin-top 2em
+		margin-bottom 8px
+		padding 15px offerPadding 10px offerPadding
+
+		&:after
+			position absolute
+			left 0
+			bottom -8px
+
+			width 300px
+			height 8px
+			background url("../img/common-sprite.png") 0 -216px no-repeat
+
+			content ""
+
+	&__options
+		margin 20px 0
+
+	&__total
+		margin-top 20px
+
+	&__buttonWrapper
+		text-align center
+		margin 30px	0 15px 0		
+	
+	&__badge
+		color #afb9ca
+
+		width 455px
+		height badgeContainerHeight
+
+		position absolute
+		right 50%
+		bottom 100%
+		margin-right -30px
+		margin-bottom -20px
+
+		line-height 10px
+		font-size sizeText*1.1
+
+		&:after
+			position absolute
+			right 65px 
+			top 0
+
+			width 293px
+			height 113px
+			background url("../img/common-sprite.png") 0 -223px no-repeat
+
+			content ""
+
+		&:before
+			position absolute
+			right 0
+			bottom 0
+
+			width 60px
+			height 60px
+			background url("../img/common-sprite.png") -112px -48px no-repeat
+
+			content ""	
+
+.lt-ie8
+	.offers__offer
+		display inline
+		zoom 1			
+

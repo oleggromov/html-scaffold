@@ -1,16 +1,18 @@
 module.exports = (grunt) ->
-	name = 'scaffold'
+	name = 'magazinster'
 	stylus = {}
 	javascript = {}
 	jsMinified = {}
 	# separate templates for all pages
 	jade =
 		'index.html': 'tpl/index.jade'
+		'cost.html': 'tpl/cost.jade'
+		'detail.html': 'tpl/detail.jade'
+		'list.html': 'tpl/list.jade'
 	# styles are compiled to one minified css
-	stylus["css/#{name}.min.css"] = 'b/blocks.styl'
+	stylus["css/#{name}.css"] = 'b/blocks.styl'
 	# logic written with coffee is compiled to one js
 	javascript["js/#{name}.js"] = 'b/**/*.coffee'
-	jsMinified["js/#{name}.min.js"] = ["js/#{name}.js"]
 
 	grunt.initConfig 
 		pkg: grunt.file.readJSON 'package.json'
@@ -21,15 +23,15 @@ module.exports = (grunt) ->
 					pretty: true
 					data:
 						projectName: name
+						data:	grunt.file.readJSON 'data.json'
 		stylus:
 			compile:
 				files: stylus
+				options:
+					compress: false
 		coffee:
 			compile:
 				files: javascript
-		uglify:
-			javascript:
-				files: jsMinified
 		connect:
 			test:
 				options:
@@ -44,14 +46,13 @@ module.exports = (grunt) ->
 				tasks: 'stylus'
 			coffee:
 				files: 'b/**/*.coffee'
-				tasks: 'coffee uglify'
+				tasks: 'coffee'
 
 
 	grunt.loadNpmTasks 'grunt-contrib-jade'
 	grunt.loadNpmTasks 'grunt-contrib-stylus'
 	grunt.loadNpmTasks 'grunt-contrib-coffee'
-	grunt.loadNpmTasks 'grunt-contrib-uglify'
 	grunt.loadNpmTasks 'grunt-contrib-watch'
 	grunt.loadNpmTasks 'grunt-contrib-connect'
 
-	grunt.registerTask 'default', ['jade', 'stylus', 'coffee', 'uglify']
+	grunt.registerTask 'default', ['jade', 'stylus', 'coffee']

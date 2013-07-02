@@ -1,0 +1,102 @@
+.menu
+	
+	&__sub
+		display: none
+		
+		position: absolute
+		z-index: 10
+		width: 265px
+		left: 50%
+		top: 100%
+		margin-left: -132px
+		border-radius(0 4px)
+
+	&__subInnerWrapper
+		margin-top: 10px
+		box-shadow(0 0 12px rgba(0,0,0,0.25))
+		border-radius(4px)
+		
+		&:before
+			content: ''
+			width: 10px
+			height: 10px
+			
+			position: absolute
+			left: 50%
+			margin-left: -5px
+			top: 5px
+			
+			background: white
+			box-shadow(0 0 12px rgba(0, 0, 0, 0.25))
+			transform(rotate(-45deg))
+
+
+	&__subInner
+		position: relative
+		background: white
+		padding: 15px
+
+		border-radius(4px)
+
+	&__subItem
+		position: relative
+		display: block
+		padding: 2px 10px
+		border-radius(4px)
+
+		color: #0366d5
+
+		&:hover,
+		&_current
+			color: white
+			background: #3875b7
+	
+	&__subItem + &__subItem:before
+		content: ''
+		position: absolute
+		width: 100%
+		height: 1px 
+		background: #d5dadf
+		margin-top: -3px 
+		margin-left: -10px
+
+	&__itemWrapper
+		position: relative
+
+		display: inline-block
+		margin-left -10px
+		margin-right 10px
+
+		font-size: 14px
+	
+	&__item
+		color: #56657d
+		padding 5px 10px
+
+		&_current
+			color: white
+			background: #3875b7
+
+			border-radius(6px)
+
+.no-boxshadow
+	.menu__subInnerWrapper
+		outline: 1px solid lightgray
+
+.lt-ie9
+	.menu__subInnerWrapper:after
+		display: none
+
+.lt-ie8
+	.menu__itemWrapper
+		display inline
+		zoom 1
+
+.menu__itemWrapper:hover
+
+	.menu__item 
+		color: #3875b7
+
+	.menu__sub
+		display: block		
+
