@@ -157,6 +157,10 @@ You can run
 so grunt will not only watch and compile necessary files but also start server on localhost:8000.
 You can make an ajax request no allowed if you would open index.html in browser just from filesystem.
 
+### Some commands
+Update npm:
+    $ npm update npm -g
+
 ## Why should HTML-coder use this
 
 1. **Organize your code** and make projects scalable using independent blocks in separate folders on the filesystem.
