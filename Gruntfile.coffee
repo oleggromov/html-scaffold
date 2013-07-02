@@ -35,7 +35,7 @@ module.exports = (grunt) ->
 				files: ['tpl/**/*.jade', 'data/**/*.jade', 'b/**/*.jade']
 				tasks: 'jade'
 			stylus:
-				files: 'b/**/*.stylus'
+				files: 'b/**/*.styl'
 				tasks: 'stylus'
 			coffee:
 				files: 'b/**/*.coffee'
